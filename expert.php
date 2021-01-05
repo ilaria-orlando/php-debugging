@@ -38,8 +38,9 @@ new_exercise(4);
 
 foreach($week as $day) {
     $day = substr($day, 0, -3);
-    print_r($week);
+
 }
+print_r($week);
 
 
 
@@ -54,6 +55,47 @@ for ($letter = 'a'; $letter <= 'z'; $letter++) {
 }
 
 print_r($arr); // Array ([0] => a, [1] => b, [2] => c, ...) a-z alphabetical array
+
+new_exercise(6);
+// === Final exercise ===
+// The fixed code should echo the following at the bottom:
+// Here is the name: $name - $name2
+// $name variables are randomly combined as seen in the code, fix all the bugs whilst keeping the functionality!
+// Examples: captain strange, ant widow, iron man, ...
+$arr = [];
+
+
+
+function combineNames($str1 = "", $str2 = "") {
+    $params = [$str1, $str2];
+    foreach($params as $param) {
+        if ($param == "") {
+            $param = randomHeroName();
+        }
+    }
+    echo implode($params, " - ");
+}
+
+
+function randomGenerate($arr, $amount) {
+    for ($i = $amount; $i > 0; $i--) {
+        array_push($arr, randomHeroName());
+    }
+
+    return $amount;
+}
+
+function randomHeroName()
+{
+    $hero_firstnames = ["captain", "doctor", "iron", "Hank", "ant", "Wasp", "the", "Hawk", "Spider", "Black", "Carol"];
+    $hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil", "marvel"];
+    $heroes = [$hero_firstnames, $hero_lastnames];
+    $randname = $heroes[rand(0,count($heroes))][rand(0, 10)];
+
+    echo $randname;
+}
+
+echo "Here is the name: " . combineNames();
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
